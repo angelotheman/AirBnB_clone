@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
         else:
-            class_name = args[0]
+            class_name = args[1]
             class_map = {
                     'BaseModel': BaseModel,
                 }
@@ -59,6 +59,15 @@ class HBNBCommand(cmd.Cmd):
                 print(class_instance.id)
             else:
                 print("** class doesn't exist **")
+
+    def do_show(self, line):
+        """
+        - Prints the string representation of an instance
+        - If class name is missing print ** class name missing **
+        - if class name doesn't exist print ** class doesn't exist **
+        - If id is missing print ** instance id is missing
+        - If instance of classname doesn't exist print **no instance found**
+        """
 
 
 if __name__ == '__main__':
