@@ -3,7 +3,7 @@
 Module for file storage
 """
 import json
-from os.path import exists
+# from os.path import exists
 
 
 class FileStorage:
@@ -30,12 +30,11 @@ class FileStorage:
         """
         Serializes __objects into JSON file (path __file_path)
         """
-
         obj_dict = {}
+        for key, obj in self.all().items():
+            obj_dict[key] = obj.to_dict()
 
         with open(self.__file_path, "w", encoding="UTF-8") as text_file:
-            obj_dict = {key: obj.to_dict()
-                        for key, obj in self.__objects.items()}
             json.dump(obj_dict, text_file)
 
     def reload(self):
@@ -44,8 +43,21 @@ class FileStorage:
         Otherwise do nothing. If the file doesn't exist no exception should
         be raised
         """
+        from models.base_model import BaseModel
+
+        class_map = {
+                    'BaseModel': BaseModel,
+            }
+
         try:
             with open(self.__file_path, "r", encoding="UTF-8") as text_file:
-                self.__objects = json.load(text_file)
+                obj_dict = json.load(text_file)
+
+                for key, val in obj_dict.items():
+                    class_name = val['__class__']
+                    class_instance = class_map[class_name]
+                    instance = class_instance(**val)
+                    all_objects = self.all()
+                    all_objects[key] = instance
         except FileNotFoundError:
             pass
