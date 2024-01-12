@@ -44,9 +44,11 @@ class FileStorage:
         be raised
         """
         from models.base_model import BaseModel
+        from models.user import User
 
         class_map = {
                     'BaseModel': BaseModel,
+                    'User' : User,
             }
 
         try:
