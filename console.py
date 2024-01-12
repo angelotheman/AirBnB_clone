@@ -19,6 +19,12 @@ class HBNBCommand(cmd.Cmd):
     Defines the commands used to interract with the program
     """
 
+    prompt = "(hbnb) "
+
+    class_map = {
+            'BaseModel' = BaseModel,
+        }
+
     def do_EOF(self, line):
         """
         Ends the program with Ctrl + D
@@ -49,11 +55,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             class_name = args[1]
-            class_map = {
-                    'BaseModel': BaseModel,
-                }
-            if class_name in class_map:
-                class_instance = class_map[class_name]()
+            if class_name in self.class_map:
+                class_instance = self.class_map[class_name]()
                 storage.new(class_instance)
                 storage.save()
                 print(class_instance.id)
@@ -73,16 +76,21 @@ class HBNBCommand(cmd.Cmd):
 
         if not args:
             print("** class name missing **")
-        elif len(args) == 1:
-            print("** instance id is missing **")
         else:
             class_name = args[0]
-            instance_id = args[1]
+            if class_name not in self.class_map:
+                print("** class doesn't exist **")
+            elif len(args) == 1:
+                print("** instance id missing **")
+            else:
+                obj_id = args[1]
+                key = "{}.{}".format(class_name, obj_id)
+                all_objects = storage.all()
 
-            try:
-                class_instance = models.storage.all()
-            except KeyError:
-                pass
+                if key not in all_objects:
+                    print("** no instance found **")
+                else:
+                    print(all_objects[key])
 
 
 if __name__ == '__main__':
