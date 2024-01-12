@@ -7,6 +7,12 @@ Command Line interpreter program
     - help
     - prompt (hbnb)
     - empty line shouldn't execute anything
+- Implement the following commands
+    - create
+    - show
+    - destroy
+    - all
+    - update
 """
 import cmd
 from models.base_model import BaseModel
@@ -48,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
         - Creates a new instance of BaseModel
         - Saves it to the JSON file
         - Prints the id
-        - Usage create <model_name>
+        - Usage: ($) create <model_name>
         """
 
         args = line.split()
@@ -71,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
         - if class name doesn't exist print ** class doesn't exist **
         - If id is missing print ** instance id is missing
         - If instance of classname doesn't exist print **no instance found**
-        - Usage: show <class_name> id
+        - Usage: ($) show <class_name> id
         """
         args = line.split()
 
@@ -92,6 +98,55 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
                 else:
                     print(all_objects[key])
+
+    def do_destroy(self, line):
+        """
+        - Deletes an instance based on the classname and id
+        - If class name is missing print ** class name missing **
+        - If classname doesn't exist print ** classname doesn't exist**
+        - If id is missing print **instance id missing**
+        - If instance of class name doesn't exist for given id print
+            ** no instance found **
+        - Usage: ($) destroy <class_name> id
+        """
+        args = line.split()
+
+        if not args:
+            print("** class name missing **")
+        else:
+            class_name = args[0]
+            if class_name not in self.class_map:
+                print("** class doesn't exist **")
+            elif len(args) == 1:
+                print("** instance id missing **")
+            else:
+                obj_id = args[1]
+                key = "{}.{}".format(class_name, obj_id)
+                all_objects = storage.all()
+
+                if key not in all_objects:
+                    print("** no instance found **")
+                else:
+                    del all_objects[key]
+
+    def do_all(self, line):
+        """
+        - Prints all string representation of all instances
+        - This is based or not based on the class name
+        - If class name doesn't exist print ** class doesn't exist **
+        - Usage:
+            1. ($) all BaseModel
+            2. ($) all
+        """
+        args = line.split()
+
+        all_objects = storage.all()
+
+        print(
+            [str(obj) for obj in all_objects.values()]
+            if not args or args[0] in self.class_map
+            else "** class doesn't exist **"
+        )
 
 
 if __name__ == '__main__':
