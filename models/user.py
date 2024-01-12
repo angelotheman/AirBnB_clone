@@ -9,10 +9,10 @@ class User(BaseModel):
     """
     This is a user created with the BaseModel.
     It would have the following attributes
-        - email
-        - password
-        - first_name
-        - last_name
+        - email: (str)
+        - password: (str)
+        - first_name: (str)
+        - last_name: (str)
     """
 
     email = ""
