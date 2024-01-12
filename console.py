@@ -48,13 +48,14 @@ class HBNBCommand(cmd.Cmd):
         - Creates a new instance of BaseModel
         - Saves it to the JSON file
         - Prints the id
+        - Usage create <model_name>
         """
 
         args = line.split()
         if not args:
             print("** class name missing **")
         else:
-            class_name = args[1]
+            class_name = args[0]
             if class_name in self.class_map:
                 class_instance = self.class_map[class_name]()
                 storage.new(class_instance)
