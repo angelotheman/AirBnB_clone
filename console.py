@@ -67,7 +67,22 @@ class HBNBCommand(cmd.Cmd):
         - if class name doesn't exist print ** class doesn't exist **
         - If id is missing print ** instance id is missing
         - If instance of classname doesn't exist print **no instance found**
+        - Usage: show <class_name> id
         """
+        args = line.split()
+
+        if not args:
+            print("** class name missing **")
+        elif len(args) == 1:
+            print("** instance id is missing **")
+        else:
+            class_name = args[0]
+            instance_id = args[1]
+
+            try:
+                class_instance = models.storage.all()
+            except KeyError:
+                pass
 
 
 if __name__ == '__main__':
