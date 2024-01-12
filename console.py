@@ -22,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     class_map = {
-            'BaseModel' = BaseModel,
+            'BaseModel': BaseModel,
         }
 
     def do_EOF(self, line):
