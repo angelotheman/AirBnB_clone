@@ -20,5 +20,5 @@ class TestReview(unittest.TestCase):
 		self.assertEqual(review.text, "")
 
 	
-	if __name__ == '__main__':
-		unittest.main()
+if __name__ == '__main__':
+	unittest.main()
