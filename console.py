@@ -61,6 +61,52 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
+    def default(self, line):
+        """
+        Called when command isn't recognizible
+        """
+
+        if line.endswith('.all()'):
+            class_name = line.split(".")[0]
+            self.do_all(class_name)
+
+        elif line.endswith('.count()'):
+            class_name = line.split(".")[0]
+            self.do_count(class_name)
+
+        elif ".show(" in line:
+            obj_id = line[line.index("(")+1:line.index(")")]
+            obj_id = obj_id.strip('""')
+            class_name = line.split(".")[0]
+            self.do_show(f"{class_name} {obj_id}")
+
+    def do_count(self, line):
+        """
+        - Counts all instances per the class
+        - If class name is missing print ** class name missing **
+        - If class doesn't exist, print ** class doesn't exist **
+        - Usage: ($) count <class name>
+        """
+
+        args = line.split()
+
+        if not args:
+            print("** class name missing **")
+        else:
+            class_name = args[0]
+
+            if class_name in self.class_map:
+                all_objects = storage.all()
+
+                count = 0
+                for key in all_objects.keys():
+                    if key.startswith(class_name):
+                        count += 1
+
+                print(count)
+            else:
+                print("** class doesn't exists **")
+
     def do_create(self, line):
         """
         - Creates a new instance of BaseModel
@@ -213,12 +259,6 @@ class HBNBCommand(cmd.Cmd):
 
                             setattr(instance, attr_name, attr_val)
                             storage.save()
-
-                            instance_str = "[{}] ({}) {}".format(
-                                    instance.__class__.__name__,
-                                    instance.id,
-                                    instance.to_dict()
-                            )
                         else:
                             print("** cannot be updated **")
 
