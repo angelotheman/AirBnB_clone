@@ -8,7 +8,7 @@ from models.user import User
 
 class TestUser(unittest.TestCase):
     """
-    Testing for various components such as 
+    Testing for various components such as
     - email
     - firstname
     - password
