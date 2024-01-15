@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 This is the python test cases for the base model class
 - Every function def is a test

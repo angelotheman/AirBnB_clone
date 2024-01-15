@@ -10,7 +10,7 @@ class TestCity(unittest.TestCase):
     """
     The test for the class method
     """
-    def setup(self):
+    def setUp(self):
         """
         Initializaing the object instance
         """

@@ -11,7 +11,7 @@ class TestAmenity(unittest.TestCase):
     """
     This tests for the Review class methods
     """
-    def setup(self):
+    def setUp(self):
         """
         Initializing the object instance
         """
