@@ -34,8 +34,8 @@ class TestCity(unittest.TestCase):
         """
         Test attribute instances
         """
-        self.assertIsInstance(state_id, str)
-        self.assertIsInstance(name, str)
+        self.assertIsInstance(city.state_id, str)
+        self.assertIsInstance(city.name, str)
 
 
 if __name__ == '__main__':
