@@ -15,6 +15,7 @@ Command Line interpreter program
     - update
 """
 import cmd
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
@@ -85,6 +86,12 @@ class HBNBCommand(cmd.Cmd):
             obj_id = obj_id.strip('""')
             class_name = line.split(".")[0]
             self.do_destroy(f"{class_name} {obj_id}")
+
+        elif "update(" in line:
+            pattern = r'(\w+)\.update\("([^"]+)", "([^"]+)", "([^"]+)"\)'
+            match = re.match(pattern, line)
+            class_name, obj_id, attr_name, attr_id = match.groups()
+            self.do_update(f"{class_name} {obj_id} {attr_name} {attr_id}")
 
         else:
             print("** this is ended **")
