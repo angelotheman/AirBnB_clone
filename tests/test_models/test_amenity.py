@@ -33,7 +33,7 @@ class TestAmenity(unittest.TestCase):
         """
         Tests an instance of the attribute
         """
-        self.assertIsInstance(amenity, str)
+        self.assertIsInstance(amenity.name, str)
 
 
 if __name__ == '__main__':
