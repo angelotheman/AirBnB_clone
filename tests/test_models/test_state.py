@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Tests for state class
+Module to test the state class
 """
 import unittest
 from models.state import State
@@ -11,13 +11,17 @@ class TestState(unittest.TestCase):
     Class method of all state attributes
     """
 
-    def setup(self):
+    def setUp(self):
         """
         Initializes my object instance
         """
         state = State()
 
     def Test_attributes(self):
+        """
+        Tests attributes
+        Returns true if attribute is found
+        """
         self.assertTrue(hasattr(state, 'name'))
 
     def test_default_values(self):

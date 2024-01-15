@@ -18,6 +18,10 @@ class TestPlace(unittest.TestCase):
         place = Place()
 
     def test_attributes(self):
+        """
+        Tests the attributes of the class
+        Returns true if attribute is found
+        """
         self.assertTrue(hasattr(place, 'city_id'))
         self.assertTrue(hasattr(place, 'user_id'))
         self.assertTrue(hasattr(place, 'name'))

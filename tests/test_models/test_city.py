@@ -17,6 +17,9 @@ class TestCity(unittest.TestCase):
         city = City()
 
     def test_attributes(self):
+        """
+        Tests the various attribute types
+        """
         self.assertTrue(hasattr(city, 'state_id'))
         self.assertTrue(hasattr(city, 'name'))
 
