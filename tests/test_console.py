@@ -26,7 +26,7 @@ class TestHBNBCommand(unittest.TestCase):
         self.held_output.close()
 
     def assert_stdout(self, expected_output, mock_stdout):
-        with patch('sys.stdout', new=self.held_output):
+        with patch('sys.stdout', new=self.held_output) as cmd_file:
             HBNBCommand().onecmd(expect_output)
             self.assertEqual(
                     self.held_output.getvalue().strip(),
