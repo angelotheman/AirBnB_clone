@@ -34,10 +34,10 @@ class TestUser(unittest.TestCase):
         """
         Tests the various types of attributes
         """
-        self.assertIsInstance(email, str)
-        self.assertIsInstance(password, str)
-        self.assertIsInstanec(first_name, str)
-        self.assterIsInstance(last_named, str)
+        self.assertIsInstance(User.email, str)
+        self.assertIsInstance(User.password, str)
+        self.assertIsInstanec(User.first_name, str)
+        self.assterIsInstance(User.last_name, str)
 
 
 if __name__ == '__main__':
