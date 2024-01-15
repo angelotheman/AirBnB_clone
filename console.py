@@ -80,6 +80,15 @@ class HBNBCommand(cmd.Cmd):
             class_name = line.split(".")[0]
             self.do_show(f"{class_name} {obj_id}")
 
+        elif "destroy(" in line:
+            obj_id = line[line.index("(")+1:line.index(")")]
+            obj_id = obj_id.strip('""')
+            class_name = line.split(".")[0]
+            self.do_destroy(f"{class_name} {obj_id}")
+
+        else:
+            print("** this is ended **")
+
     def do_count(self, line):
         """
         - Counts all instances per the class
@@ -200,11 +209,20 @@ class HBNBCommand(cmd.Cmd):
 
         all_objects = storage.all()
 
-        print(
-            [str(obj) for obj in all_objects.values()]
-            if not args or args[0] in self.class_map
-            else "** class doesn't exist **"
-        )
+        if not args:
+            print([str(obj) for obj in all_objects.values()])
+        else:
+            class_name = args[0]
+
+            if class_name not in self.class_map:
+                print("** class doesn't exist **")
+            else:
+                attr_list = []
+                for key, val in all_objects.items():
+                    if key.startswith(class_name):
+                        attr_list.append(str(val))
+
+                print(attr_list)
 
     def do_update(self, line):
         """
