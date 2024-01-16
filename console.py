@@ -202,6 +202,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
                 else:
                     del all_objects[key]
+                    storage.save()
 
     def do_all(self, line):
         """
