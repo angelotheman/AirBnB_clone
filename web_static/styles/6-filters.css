@@ -1,0 +1,39 @@
+.filters .popover {
+    background-color: #FAFAFA;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    position: absolute;
+    display: none;
+    border-top: none;
+    margin-top: 5px;
+}
+
+/* Locations and amenities popover */
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover {
+    display: block;
+}
+
+/* List for locations */
+.filters .locations ul {
+    padding: 6px 0 6px 0;
+}
+
+.filters .locations li {
+    list-style: none;
+    margin: 0 auto 6px 3em;
+}
+
+.filters .amenities li {
+    margin: 12px auto 12px 30px;
+    list-style: none;
+}
+
+.filters h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 12px auto 0 30px;
+    padding-top: 15px;
+    line-height: 0;
+}
