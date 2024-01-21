@@ -1,15 +1,25 @@
-.locations,
-.amenities {
+.filters .locations,
+.filters .amenities {
     height: 100%;
     width: 25%;
-    border-right: #DDDDDD;
+    display: inline-block;
+    position: relative;
 }
 
-h3 {
+.filters .locations {
+    border-right: 1px solid #DDDDDD;
+}
+
+.filters h3 {
     font-weight: 600;
+    padding-top: 10px;
+    line-height: 0px;
+    padding-left: 30px;
 }
 
-h4 {
+.filters h4 {
     font-weight: 400;
+    line-height: 0px;
     font-size: 14px;
+    padding-left: 30px;
 }
