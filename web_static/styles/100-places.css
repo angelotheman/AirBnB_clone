@@ -1,9 +1,9 @@
-.places .amenities h2 {
+.places .amenities h2,
+.places .reviews h2 {
     font-size: 16px;
     border-bottom: 1px solid #DDDDDD;
     width: 100%;
     text-align: left;
-    padding-bottom: 10px;
 }
 
 /* .amenities styles */
@@ -13,7 +13,8 @@
 
 
 /* List of amenities */
-.amenities ul {
+.amenities ul,
+.reviews ul {
     list-style: none;
     padding: 0;
 }
@@ -46,4 +47,30 @@
 
 .amenities .wifi-icon {
     background-image: url("../images/icon_wifi.png");
+}
+
+.reviews {
+    margin-top: 40px;
+}
+
+.reviews .item-class {
+    text-align: left;
+}
+
+.reviews li {
+    margin-bottom: 30px;
+}
+
+.reviews h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.reviews p {
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+article:last-child .reviews li:last-child {
+    margin-bottom: 0;
 }
