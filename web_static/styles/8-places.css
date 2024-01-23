@@ -27,6 +27,7 @@
     flex-direction: row;
     justify-content: space-around;
     padding-top: 10px;
+    border-bottom: 1px solid #DDDDDD;
 }
 
 .max_guest, .number_rooms, .number_bathrooms {
