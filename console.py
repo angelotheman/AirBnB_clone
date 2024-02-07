@@ -14,7 +14,9 @@ Command Line interpreter program
     - all
     - update
 """
+
 import cmd
+import os
 import re
 from models.base_model import BaseModel
 from models.user import User
@@ -49,6 +51,12 @@ class HBNBCommand(cmd.Cmd):
         Ends the program with Ctrl + D
         """
         return True
+
+    def do_clear(self, arg):
+        """
+        Clear the console
+        """
+        os.system('cls' if os.name == 'nt' else 'clear')
 
     def do_quit(self, line):
         """
